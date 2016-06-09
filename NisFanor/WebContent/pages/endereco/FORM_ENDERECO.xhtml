@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputScript library="js" name="common.js" />
+</h:head>
+<h:body>
+
+
+	<h:form styleClass="fundo">
+
+
+		<p:messages errorClass="alert-danger" infoClass="alert-sucess" />
+
+		<div>
+			<h:panelGrid columns="4" styleClass="fundo">
+
+				<f:facet name="header">
+					<h:outputLabel value="Endereco" styleClass="h1" />
+				</f:facet>
+
+				<h:outputLabel value="Nome da rua/avenida"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.rua}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Cep"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.cep}"
+					styleClass="form-control painelFORM" />
+					
+					
+				<h:outputLabel value="Complemento"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.complemento}"
+					styleClass="form-control painelFORM" />	
+					
+				<h:outputLabel value="Bairro"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.bairro}"
+					styleClass="form-control painelFORM" />		
+					
+				<h:outputLabel value="Cidade"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.cidade}"
+					styleClass="form-control painelFORM" />		
+					
+				<h:outputLabel value="Estado"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{enderecoControle.endereco.estado}"
+					styleClass="form-control painelFORM" />		
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="salvar" action="#{enderecoControle.salvar()}"
+				styleClass="btn btn-primary"
+				style="margin-top:10px;margin-left:15px" />
+
+			<h:commandButton value="cancelar"
+				action="#{enderecoControle.cancelar()}" styleClass="btn btn-warning"
+				style="margin-top:10px;margin-left:10px" immediate="true" />
+				
+			<h:commandButton value="Novo" action="#{enderecoControle.novo()}"
+				styleClass="btn btn-success"
+				style="margin-top:10px;margin-left:15px" />	
+
+		</div>
+
+
+	</h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputScript library="js" name="common.js" />
+</h:head>
+<h:body>
+
+
+	<h:form>
+
+		<p:messages errorClass="alert-danger" infoClass="alert-sucess" />
+		
+		<p:contextMenu for="tb_paciente">
+				<p:menuitem value="Delete" update="tb_paciente" icon="ui-icon-close"
+					action="#{pacienteControle.remover(paciente)}" />
+			</p:contextMenu>
+
+
+		<p:dataTable var="paciente" value="#{pacienteControle.listaPaciente}"
+			style="font-size:10px" widgetVar="pacienteTable" id="tb_paciente"
+			resizableColumns="true" reflow="true" paginator="true" rows="5"
+			draggableColumns="true" draggableRows="true"
+			rowsPerPageTemplate="5,10,15" rowKey="paciente.nome"
+			selectionMode="single">
+
+			<f:facet name="header"> Dados dos Pacientes
+				
+			</f:facet>
+
+			<f:facet name="footer">
+				In total there are #{pacienteControle.listaPaciente.size()} pacientes.
+				
+				<p:commandButton id="toggler" type="button" value="Visualização"
+					style="float:right" icon="ui-icon-calculator" />
+				<p:columnToggler datasource="tb_paciente" trigger="toggler" />
+
+			</f:facet>
+
+			
+			<p:column sortBy="#{paciente.nome}" filterBy="#{paciente.nome}">
+				<f:facet name="header">Nome</f:facet>
+				<h:outputLabel value="#{paciente.nome}" />
+			</p:column>
+
+			<p:column style="width:70px;text-align:center"
+				sortBy="#{pacienteControle.calculaIdade(paciente)}"
+				filterBy="#{pacienteControle.calculaIdade(paciente)}">
+				<f:facet name="header">Idade</f:facet>
+				<h:outputLabel value="#{pacienteControle.calculaIdade(paciente)}" />
+
+
+			</p:column>
+
+			<p:column style="width:70px;text-align:center"
+				sortBy="#{paciente.sexo}" filterBy="#{paciente.sexo}">
+				<f:facet name="header">Sexo</f:facet>
+				<h:outputLabel value="#{paciente.sexo}" style="color:blue"
+					rendered="#{paciente.sexo=='M'}" />
+				<h:outputLabel value="#{paciente.sexo}" style="color:red"
+					rendered="#{paciente.sexo=='F'}" />
+			</p:column>
+
+			<p:column sortBy="#{paciente.cpf}" filterBy="#{paciente.cpf}">
+				<f:facet name="header">CPF</f:facet>
+				<h:outputLabel value="#{paciente.cpf}" />
+			</p:column>
+
+
+			<p:column sortBy="#{paciente.rendaFamiliar}"
+				filterBy="#{paciente.rendaFamiliar}">
+				<f:facet name="header">Renda Familiar</f:facet>
+				<h:outputLabel value="#{paciente.rendaFamiliar}">
+					<f:convertNumber pattern="R$ #,##0.00" />
+				</h:outputLabel>
+			</p:column>
+
+			<p:column sortBy="#{paciente.telefone}"
+				filterBy="#{paciente.telefone}">
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputLabel value="#{paciente.telefone}" />
+			</p:column>
+
+			<p:column sortBy="#{paciente.celular}" filterBy="#{paciente.celular}">
+				<f:facet name="header">Celular</f:facet>
+				<h:outputLabel value="#{paciente.celular}" />
+			</p:column>
+
+			<p:column sortBy="#{paciente.nomePai}" filterBy="#{paciente.nomePai}">
+				<f:facet name="header">Pai</f:facet>
+				<h:outputLabel value="#{paciente.nomePai}" />
+			</p:column>
+
+			<p:column sortBy="#{paciente.nomeMae}" filterBy="#{paciente.nomeMae}">
+				<f:facet name="header">Mae</f:facet>
+				<h:outputLabel value="#{paciente.nomeMae}" />
+			</p:column>
+
+			<p:column style="text-align:center">
+				<f:facet name="header">Remover</f:facet>
+				<h:commandButton action="#{pacienteControle.remover(paciente)}"
+					onclick="if(!confirm('Deseja realmente excluir #{paciente.nome}')) return false"
+					value="remover" styleClass="btn btn-danger" />
+			</p:column>
+
+			<p:column style="text-align:center">
+				<f:facet name="header">Alterar</f:facet>
+				<h:commandButton action="#{pacienteControle.alterar(paciente)}"
+					value="alterar" styleClass="btn btn-warning" />
+			</p:column>
+
+
+
+		</p:dataTable>
+
+		<h:commandButton actionListener="#{pacienteControle.listarTodos()}"
+			value="listar" style="margin-top:10px; margin-left:10px"
+			styleClass="btn btn-success" />
+
+		<h:commandButton action="#{pacienteControle.novo()}"
+			value="criar paciente" style="margin-top:10px;margin-left:10px"
+			styleClass="btn btn-primary" />
+
+
+
+	</h:form>
+
+
+</h:body>
+</html>

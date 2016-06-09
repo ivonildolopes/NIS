@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputScript library="js" name="common.js" />
+</h:head>
+<h:body>
+
+
+	<h:form styleClass="fundo">
+
+
+		<p:messages errorClass="alert-danger" infoClass="alert-sucess" />
+
+		<div>
+			<h:panelGrid columns="6" styleClass="fundo">
+
+				<f:facet name="header">
+					<h:outputLabel value="Dados Pessoais" styleClass="h1" />
+				</f:facet>
+
+				<h:outputLabel value="Nome"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.nome}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Sexo"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<h:selectOneMenu value="#{pacienteControle.paciente.sexo}"
+					styleClass="form-control painelFORM">
+					<f:selectItem itemLabel="Masculino" itemValue="M"
+						styleClass="form-control" />
+					<f:selectItem itemLabel="Feminino" itemValue="F"
+						styleClass="form-control" />
+				</h:selectOneMenu>
+
+				<h:outputLabel value="CPF"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<p:inputMask mask="999.999.999-99"
+					styleClass="form-control painelFORM2"
+					value="#{pacienteControle.paciente.cpf}" />
+
+				<h:outputLabel value="RG"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.rg}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Orgao Emissor"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<p:inputMask value="#{pacienteControle.paciente.orgaoEmissor}"
+					styleClass="form-control painelFORM" mask="***-**"
+					style="margin-left:10px" />
+
+				<h:outputLabel value="Data Emissao"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<p:inputMask value="#{pacienteControle.paciente.dataEmissao}"
+					style="margin-left:10px" styleClass="form-control painelFORM"
+					mask="99/99/9999" >
+					<f:converter converterId="converterData" />
+				</p:inputMask>
+
+
+				<h:outputLabel value="Escolaridade"
+					styleClass="label label-pill label-primary painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.escolaridade}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Profissao"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.profissao}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Estado civil"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.estadoCivil}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="Data Nascimento"
+					styleClass="label label-pill label-primary painelFORM" />
+				<p:inputMask value="#{pacienteControle.paciente.dataNascimento}"
+					styleClass="form-control painelFORM" mask="99/99/9999"
+					style="margin-left:10px">
+					<f:converter converterId="converterData" />
+				</p:inputMask>
+
+				<h:outputLabel value="Renda Familiar"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.rendaFamiliar}"
+					styleClass="form-control painelFORM" id="renda">
+					<f:convertNumber pattern="#,##0.00" />
+				</h:inputText>
+
+				<p:outputLabel value="Endereco:" for="themePojo"
+					styleClass="label label-pill label-primary painelFORM2" />
+				<p:autoComplete id="themePojo"
+					value="#{pacienteControle.paciente.endereco}"
+					completeMethod="#{pacienteControle.completeTheme}" var="endereco"
+					itemLabel="#{endereco.toStringLabel()}" itemValue="#{endereco}"
+					converter="#{pacienteControle.converteEndereco}"
+					forceSelection="true" placeholder="Informe o endereço"
+					styleClass="painelFORM" />
+
+
+				<h:outputLabel value="Telefone"
+					style="margin-left:10px;margin-top:10px"
+					styleClass="label label-pill label-primary" />
+				<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
+					value="#{pacienteControle.paciente.telefone}"
+					style="margin-left:10px;margin-top:10px" />
+
+				<h:outputLabel value="celular" style="margin-left:20px"
+					styleClass="label label-pill label-primary" />
+				<p:inputMask mask="(99) 99999-9999" styleClass="form-control"
+					style="margin-left:10px;margin-top:10px"
+					value="#{pacienteControle.paciente.celular}" />
+			</h:panelGrid>
+
+
+
+
+
+			<h:panelGrid columns="4" styleClass="fundo">
+
+				<f:facet name="header">
+					<h:outputLabel value="Filiação" styleClass="h1" />
+				</f:facet>
+
+				<h:outputLabel value="Nome da mae"
+					styleClass="label label-pill label-warning painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.nomeMae}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="idade da mae"
+					styleClass="label label-pill label-warning painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.idadeMae}"
+					styleClass="form-control painelFORM2" />
+
+				<h:outputLabel value="Escolaridade da mae"
+					styleClass="label label-pill label-warning painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.escolaridadeMae}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="profissao da mae"
+					styleClass="label label-pill label-warning painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.profissaoMae}"
+					styleClass="form-control painelFORM2" />
+
+
+				<h:outputLabel value="Nome do pai"
+					styleClass="label label-pill label-warning painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.nomePai}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="idade da Pai"
+					styleClass="label label-pill label-warning painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.idadePai}"
+					styleClass="form-control painelFORM2" />
+
+				<h:outputLabel value="Escolaridade da Pai"
+					styleClass="label label-pill label-warning painelFORM" />
+				<h:inputText value="#{pacienteControle.paciente.escolaridadePai}"
+					styleClass="form-control painelFORM" />
+
+				<h:outputLabel value="profissao da Pai"
+					styleClass="label label-pill label-warning painelFORM2" />
+				<h:inputText value="#{pacienteControle.paciente.profissaoPai}"
+					styleClass="form-control painelFORM2" />
+			</h:panelGrid>
+
+
+			<h:commandButton value="salvar" action="#{pacienteControle.salvar()}"
+				styleClass="btn btn-primary"
+				style="margin-top:10px;margin-left:15px" />
+
+			<h:commandButton value="cancelar"
+				action="#{pacienteControle.cancelar()}" styleClass="btn btn-warning"
+				style="margin-top:10px;margin-left:10px" immediate="true" />
+
+		</div>
+
+
+	</h:form>
+
+
+</h:body>
+</html>
